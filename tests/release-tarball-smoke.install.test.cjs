@@ -317,11 +317,14 @@ describe('bug-131: runNpm isolates HOME from the caller environment', () => {
     // the fix is absent; if it's under a tmp dir, the fix is present.
 
     const script = `
-      const { runNpm } = require(${JSON.stringify(path.join(__dirname, 'helpers.cjs'))});
+      const { runNpm, isolatedNpmEnv } = require(${JSON.stringify(path.join(__dirname, 'helpers.cjs'))});
       try {
         // npm config get cache prints the effective cache directory.
         const out = runNpm(['config', 'get', 'cache']);
-        process.stdout.write(out.trim());
+        process.stdout.write(JSON.stringify({
+          cache: out.trim(),
+          isolatedHome: isolatedNpmEnv().HOME,
+        }));
         process.exit(0);
       } catch (e) {
         process.stderr.write(e.message + '\\n');
@@ -349,23 +352,33 @@ describe('bug-131: runNpm isolates HOME from the caller environment', () => {
       `runNpm config get cache failed with exit ${exitCode}. stderr: ${stderr}`,
     );
 
-    const effectiveCacheDir = stdout.trim();
-
-    // The effective npm cache must NOT be inside the calling process's HOME.
-    // If it is, the fix was not applied and the Docker regression can still occur.
+    const observed = JSON.parse(stdout.trim());
+    const effectiveCacheDir = observed.cache;
+    const isolatedHome = observed.isolatedHome;
     const callerHome = os.homedir();
-    assert.ok(
-      !effectiveCacheDir.startsWith(callerHome),
-      `npm cache dir ${effectiveCacheDir} is still under caller HOME ${callerHome} — fix not applied`,
+    assert.notEqual(
+      path.resolve(isolatedHome),
+      path.resolve(callerHome),
+      `runNpm isolated HOME ${isolatedHome} must differ from caller HOME ${callerHome}`,
     );
 
-    // It must be somewhere under the system tmp dir, confirming isolation.
+    // The cache must be under the exact isolated HOME used by runNpm. On
+    // Windows, os.tmpdir() normally lives under %USERPROFILE%\AppData, so a
+    // blanket "not under caller HOME" prefix assertion is contradictory with
+    // the required temp-directory assertion below. Comparing against the
+    // process-scoped isolated HOME directly proves the intended isolation on
+    // every platform.
     // Use safeRealpath on both sides so that macOS /var→/private/var symlinks
     // do not cause a false mismatch when os.tmpdir() and the resolved cache
     // path differ only in symlink expansion. The cache sub-directory (.npm) may
     // not exist yet; safeRealpath walks up to the nearest existing ancestor.
     const sysTmp = safeRealpath(os.tmpdir());
     const realCacheDir = safeRealpath(effectiveCacheDir);
+    const realIsolatedHome = safeRealpath(isolatedHome);
+    assert.ok(
+      realCacheDir.startsWith(realIsolatedHome + path.sep),
+      `npm cache dir ${realCacheDir} should be under isolated HOME ${realIsolatedHome}`,
+    );
     assert.ok(
       realCacheDir.startsWith(sysTmp),
       `npm cache dir ${realCacheDir} should be under tmpdir ${sysTmp}`,
