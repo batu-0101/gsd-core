@@ -68,7 +68,7 @@
     "typescript-eslint": "^8.60.0"
   },
   "overrides": {
-    "qs": ">=6.15.2"
+    "qs": ">=6.16.1"
   },
   "optionalDependencies": {
     "fallow": "^2.70.0"
