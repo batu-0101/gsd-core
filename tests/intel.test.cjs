@@ -1243,7 +1243,7 @@ describe('#3258: no stale /gsd-intel slash-command references in product source 
         try {
           src = fs.readFileSync(file, 'utf8');
         } catch (err) {
-          throw new Error(`failed reading ${rel}: ${err.message}`);
+          throw new Error(`failed reading ${rel}: ${err.message}`, { cause: err });
         }
 
         const staleLines = staleLinesIn(src);

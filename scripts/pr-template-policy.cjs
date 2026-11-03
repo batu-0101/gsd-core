@@ -192,7 +192,7 @@ function evaluatePrTemplate(body, authorAssociation, changedFiles) {
     };
   }
 
-  let valid = true;
+  let valid;
   let reason = 'PR body uses a typed pull request template.';
   let template = null;
   let missingHeadings = [];

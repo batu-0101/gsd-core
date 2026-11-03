@@ -1163,7 +1163,7 @@ function runJsonErrors(args, tmpDir, env = {}) {
       `--json-errors must emit valid JSON on stderr.\n` +
       `Args: ${args.join(' ')}\n` +
       `stderr: ${result.error}\n` +
-      `parse error: ${e.message}`
+      `parse error: ${e.message}`, { cause: e }
     );
   }
   return parsed;
@@ -1267,7 +1267,7 @@ describe('feat #3255: --json-errors mode emits structured error objects', () => 
       throw new Error(
         `GSD_JSON_ERRORS=1 must emit valid JSON on stderr.\n` +
         `stderr: ${result.error}\n` +
-        `parse error: ${e.message}`
+        `parse error: ${e.message}`, { cause: e }
       );
     }
     assert.strictEqual(parsed.ok, false,
@@ -1370,7 +1370,7 @@ function runJsonErrors(args, tmpDir, env = {}) {
   } catch (e) {
     throw new Error(
       `GSD_JSON_ERRORS=1 must emit valid JSON on stderr.\n` +
-      `Args: ${args.join(' ')}\nstderr: ${result.error}\nparse error: ${e.message}`
+      `Args: ${args.join(' ')}\nstderr: ${result.error}\nparse error: ${e.message}`, { cause: e }
     );
   }
   return parsed;

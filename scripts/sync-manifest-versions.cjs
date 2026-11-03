@@ -198,7 +198,7 @@ function stageManifests(opts) {
     execFileSync('git', ['add', '--', ...toStage], { cwd: root, stdio: ['ignore', 'ignore', 'pipe'] });
   } catch (err) {
     const detail = err && err.stderr ? err.stderr.toString().trim() : (err && err.message) || 'unknown error';
-    throw new Error(`sync-manifest-versions: failed to git-add manifests inside a work tree: ${detail}`);
+    throw new Error(`sync-manifest-versions: failed to git-add manifests inside a work tree: ${detail}`, { cause: err });
   }
 }
 

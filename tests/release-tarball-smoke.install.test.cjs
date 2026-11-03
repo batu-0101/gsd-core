@@ -329,7 +329,7 @@ describe('bug-131: runNpm isolates HOME from the caller environment', () => {
       }
     `;
 
-    let stdout = '';
+    let stdout;
     let stderr = '';
     let exitCode = 0;
     try {

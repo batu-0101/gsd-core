@@ -82,7 +82,7 @@ function parseEnvelope(result, label = '') {
       `${label}: JSON.parse failed.\n` +
       `stdout=${result.stdout?.slice(0, 300)}\n` +
       `stderr=${result.stderr?.slice(0, 300)}\n` +
-      `status=${result.status}`
+      `status=${result.status}`, { cause: e }
     );
   }
 }

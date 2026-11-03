@@ -191,7 +191,7 @@ describe('gsd-read-injection-scanner: edge cases', () => {
 
   test('EDGE-05: malformed JSON input exits silently without crashing', () => {
     const input = '{ not valid json !!!';
-    let stdout = '';
+    let stdout;
     let exitCode = 0;
     let signal = null;
     try {

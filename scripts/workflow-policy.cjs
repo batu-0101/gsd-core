@@ -362,8 +362,8 @@ function inspectWorkflow(yamlText, { filePath = '<unknown>' } = {}) {
         const violation = detectViolation(runner, eff, stepShell, jobDefaultsShell, workflowDefaultsShell);
 
         // Find evidence line: prefer step name, then shell:, then run: content
-        let evidenceLine = 1;
-        let evidenceSnippet = '';
+        let evidenceLine;
+        let evidenceSnippet;
 
         if (stepName !== `step-${stepIndex}`) {
           evidenceLine = findLineNumber(yamlText, stepName);

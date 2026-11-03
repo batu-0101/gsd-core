@@ -261,7 +261,7 @@ const SDK_CLI = path.join(REPO_ROOT, 'sdk', 'dist', 'cli.js');
 
 function runConfigSet(key, value, projectDir) {
   const argv = ['query', 'config-set', key, String(value), '--project-dir', projectDir];
-  let stdout = '';
+  let stdout;
   let exitCode = 0;
   try {
     stdout = execFileSync(process.execPath, [SDK_CLI, ...argv], {
@@ -398,7 +398,7 @@ describe('bug-2943: config-get returns schema default for context_window', () =>
    */
   function runConfigGet(keyPath, extraArgs = []) {
     const args = [GSD_TOOLS, 'config-get', keyPath, '--raw', '--cwd', tmpDir, ...extraArgs];
-    let stdout = '';
+    let stdout;
     let stderr = '';
     let exitCode = 0;
     try {

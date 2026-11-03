@@ -157,7 +157,7 @@ describe('createDefaultLogger — stderr on error', () => {
   test('stderr line is valid JSON', () => {
     const logger = createDefaultLogger({ cwd: tmpDir });
     const errEvent = makeErrEvent({ kind: 'HandlerFailure', message: 'boom' });
-    let stderrOutput = '';
+    let stderrOutput;
     stderrOutput = captureStderr(() => logger.onEvent(errEvent));
 
     const line = stderrOutput.trim();

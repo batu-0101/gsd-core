@@ -4462,7 +4462,7 @@ describe('Bug #1657: finishInstall recovers a malformed (non-object) defaults.js
     try {
       installModule.finishInstall(SETTINGS_PATH, {}, null, false, runtime, true, null);
     } catch (e) { threw = e.message; } finally { console.log = log; process.env.GSD_TEST_MODE = saved; }
-    let after = null;
+    let after;
     try { after = JSON.parse(fs.readFileSync(DEFAULTS_PATH, 'utf8')); } catch (e) { after = 'UNPARSEABLE: ' + e.message; }
     return { threw, after };
   }
@@ -8453,7 +8453,7 @@ describe('Bug #1657: finishInstall recovers a malformed (non-object) defaults.js
     try {
       installModule.finishInstall(SETTINGS_PATH, {}, null, false, runtime, true, null);
     } catch (e) { threw = e.message; } finally { console.log = log; process.env.GSD_TEST_MODE = saved; }
-    let after = null;
+    let after;
     try { after = JSON.parse(fs.readFileSync(DEFAULTS_PATH, 'utf8')); } catch (e) { after = 'UNPARSEABLE: ' + e.message; }
     return { threw, after };
   }

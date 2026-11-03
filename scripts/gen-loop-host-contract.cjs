@@ -492,7 +492,7 @@ function getWiredLoopPoints(repoRoot) {
     try {
       content = fs.readFileSync(absPath, 'utf8');
     } catch (err) {
-      throw new Error('getWiredLoopPoints: cannot read host-loop file ' + absPath + ': ' + err.message);
+      throw new Error('getWiredLoopPoints: cannot read host-loop file ' + absPath + ': ' + err.message, { cause: err });
     }
     for (const point of scanWiredPoints(content)) {
       result.add(point);

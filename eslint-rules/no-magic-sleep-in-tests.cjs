@@ -26,7 +26,7 @@ const rule = {
     },
   },
   create(context) {
-    const filename = context.getFilename();
+    const filename = context.filename ?? context.getFilename();
 
     // Only applies in test files
     if (!filename.endsWith('.test.cjs')) return {};

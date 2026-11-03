@@ -54,11 +54,11 @@
     "ws": "^8.21.0"
   },
   "devDependencies": {
-    "@eslint/js": "^9.39.4",
+    "@eslint/js": "^10.0.1",
     "@stryker-mutator/core": "^9.6.1",
     "@types/node": "^22.19.19",
     "c8": "^11.0.0",
-    "eslint": "^9.39.4",
+    "eslint": "^10.14.0",
     "eslint-plugin-n": "^17.24.0",
     "eslint-plugin-no-only-tests": "^3.4.0",
     "fast-check": "^4.8.0",
@@ -68,10 +68,12 @@
     "typescript-eslint": "^8.60.0"
   },
   "overrides": {
-    "qs": ">=6.15.2"
+    "qs": ">=6.16.1",
+    "minimatch": "^11.0.1",
+    "glob": "^14.0.3"
   },
   "optionalDependencies": {
-    "fallow": "^2.70.0"
+    "fallow": "^3.34.0"
   },
   "scripts": {
     "sync:launcher": "node scripts/sync-runtime-launcher.cjs",
@@ -124,6 +126,6 @@
     "test:mutation:since": "stryker run --incremental --since origin/next"
   },
   "allowScripts": {
-    "fallow@2.70.0": true
+    "fallow@3.38.1": true
   }
 }

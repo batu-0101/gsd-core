@@ -320,7 +320,7 @@ describe('context meter respects CLAUDE_CODE_AUTO_COMPACT_WINDOW (#2219)', () =>
       delete env.CLAUDE_CODE_AUTO_COMPACT_WINDOW;
     }
 
-    let stdout = '';
+    let stdout;
     try {
       stdout = execFileSync(process.execPath, [hookPath], {
         input: payload,
@@ -420,7 +420,7 @@ describe('context meter boundary: acw at/near totalCtx does not pin used at 100%
       delete env.CLAUDE_CODE_AUTO_COMPACT_WINDOW;
     }
 
-    let stdout = '';
+    let stdout;
     try {
       stdout = execFileSync(process.execPath, [hookPath], {
         input: payload,
@@ -562,7 +562,7 @@ describe('todo-resolution: resolves in_progress task from the newest matching to
 
     const env = { ...process.env, CLAUDE_CONFIG_DIR: tempDir };
 
-    let stdout = '';
+    let stdout;
     try {
       stdout = execFileSync(process.execPath, [hookPath], {
         input: payload,

@@ -80,7 +80,7 @@ function main() {
     } catch { /* fall through */ }
   }
   const base = process.env.GITHUB_BASE_REF || 'main';
-  let changedFiles = [];
+  let changedFiles;
   try {
     // Use execFileSync with an argv array — the base ref is interpolated
     // into a refspec argument, but execFileSync does not invoke a shell, so

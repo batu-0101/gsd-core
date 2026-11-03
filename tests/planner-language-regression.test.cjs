@@ -600,7 +600,7 @@ let src;
 try {
   src = fs.readFileSync(path.join(ROOT, 'agents', 'gsd-planner.md'), 'utf8');
 } catch (err) {
-  throw new Error(`agents/gsd-planner.md not found — was the file renamed? (${err.message})`);
+  throw new Error(`agents/gsd-planner.md not found — was the file renamed? (${err.message})`, { cause: err });
 }
 
 const directives = [

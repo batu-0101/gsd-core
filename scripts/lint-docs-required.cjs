@@ -150,7 +150,7 @@ function main() {
   }
 
   const base = process.env.GITHUB_BASE_REF || 'main';
-  let changedFiles = [];
+  let changedFiles;
   try {
     // execFileSync with argv — no shell, so a malicious GITHUB_BASE_REF
     // cannot inject shell syntax. Git's own ref-name validator rejects

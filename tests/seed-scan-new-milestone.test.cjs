@@ -110,7 +110,7 @@ function readPlantSeed() {
   try {
     return fs.readFileSync(PLANT_SEED, 'utf8');
   } catch (err) {
-    throw new Error('gsd-core/workflows/plant-seed.md not found: ' + err.message);
+    throw new Error('gsd-core/workflows/plant-seed.md not found: ' + err.message, { cause: err });
   }
 }
 

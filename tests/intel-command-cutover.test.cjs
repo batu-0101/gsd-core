@@ -80,7 +80,7 @@ function runJsonErrors(args, tmpDir, env = {}) {
   } catch (e) {
     throw new Error(
       `GSD_JSON_ERRORS=1 must emit valid JSON on stderr.\n` +
-      `Args: ${args.join(' ')}\nstderr: ${result.error}\nparse error: ${e.message}`,
+      `Args: ${args.join(' ')}\nstderr: ${result.error}\nparse error: ${e.message}`, { cause: e },
     );
   }
   return parsed;

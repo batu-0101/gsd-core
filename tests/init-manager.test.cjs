@@ -1040,7 +1040,7 @@ describe('bug-3584: validate health emits hyphen form in fix hints', () => {
     try {
       payload = JSON.parse(stdout);
     } catch (e) {
-      throw new Error(`validate health did not emit parseable JSON: ${stdout.slice(0, 400)}`);
+      throw new Error(`validate health did not emit parseable JSON: ${stdout.slice(0, 400)}`, { cause: e });
     }
 
     const allIssues = []
@@ -1108,7 +1108,7 @@ describe('bug-3584: validate health uses formatter for codex runtime too', () =>
     try {
       payload = JSON.parse(result.output);
     } catch (e) {
-      throw new Error(`validate health (codex) did not emit JSON: ${result.output.slice(0, 400)}`);
+      throw new Error(`validate health (codex) did not emit JSON: ${result.output.slice(0, 400)}`, { cause: e });
     }
 
     const allIssues = []

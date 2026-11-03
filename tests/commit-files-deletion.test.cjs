@@ -44,7 +44,7 @@ describe('commit --files: missing files must not stage deletions (#2014)', () =>
 
     // Check git log: the new commit (HEAD) must NOT have deleted STATE.md.
     // git diff HEAD~1 HEAD --name-status shows what changed between commits.
-    let diffOutput = '';
+    let diffOutput;
     try {
       diffOutput = execSync('git diff HEAD~1 HEAD --name-status', { cwd: tmpDir, encoding: 'utf-8' });
     } catch (e) {
@@ -87,7 +87,7 @@ describe('commit --files: missing files must not stage deletions (#2014)', () =>
     );
 
     // The commit must not include a deletion of STATE.md
-    let diffOutput = '';
+    let diffOutput;
     try {
       diffOutput = execSync('git diff HEAD~1 HEAD --name-status', { cwd: tmpDir, encoding: 'utf-8' });
     } catch (e) {

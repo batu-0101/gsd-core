@@ -2204,7 +2204,7 @@ async function runCommand(command, args, cwd, raw, defaultValue, originalCommand
           if (!ledger || !ledger.entries) continue;
           for (const capId of Object.keys(ledger.entries)) {
             const entry = ledger.entries[capId];
-            let manifest = {};
+            let manifest;
             try {
               // #1459 CONVERGENCE finding 2: read the (project-plantable) capability.json via the SHARED
               // bounded fd reader (open → fstat → require regular file → size cap → read exactly size), NOT

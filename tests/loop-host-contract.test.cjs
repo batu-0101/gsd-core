@@ -505,7 +505,6 @@ describe('assertPointsCoverage per-step ownership (FIX 1)', () => {
     } finally {
       if (!cleaned) {
         cleanup(tmpDir);
-        cleaned = true;
       }
     }
   });

@@ -42,7 +42,7 @@ describe('prohibition-enforcement properties (#1259)', () => {
     const enforce = require(ENFORCEMENT_LIB);
     fc.assert(fc.property(fc.string(), (s) => {
       // Only exercise strings that are NOT a valid JSON array (the unreadable-report branch).
-      let isArray = false;
+      let isArray;
       try { isArray = Array.isArray(JSON.parse(s)); } catch { isArray = false; }
       fc.pre(!isArray);
       assert.equal(enforce.eslintJsonHasRule(s, 'local/no-source-grep'), true, 'unreadable report -> violation (fail-closed)');

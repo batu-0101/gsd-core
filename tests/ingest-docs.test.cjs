@@ -349,7 +349,7 @@ const REPO_ROOT = path.join(__dirname, '..');
 const WORKFLOW_FILE = path.join(REPO_ROOT, 'gsd-core', 'workflows', 'ingest-docs.md');
 
 function spawnGsdTools(args, projectDir) {
-  let stdout = '';
+  let stdout;
   let exitCode = 0;
   try {
     stdout = childProc.execFileSync(

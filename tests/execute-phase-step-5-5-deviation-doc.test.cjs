@@ -43,7 +43,7 @@ describe('execute-phase step 5.5: cross-wave-deviation cleanup documentation (#3
     try {
       return fs.readFileSync(WORKFLOW_PATH, 'utf-8');
     } catch (err) {
-      throw new Error(`failed to read workflow fixture at ${WORKFLOW_PATH}: ${err.message}`);
+      throw new Error(`failed to read workflow fixture at ${WORKFLOW_PATH}: ${err.message}`, { cause: err });
     }
   }
 

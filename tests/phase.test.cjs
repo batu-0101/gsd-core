@@ -4357,7 +4357,7 @@ function runPhaseComplete(tmpDir, { phase = '1', tolerateExit = false } = {}) {
       throw new Error(
         `gsd-tools phase complete ${phase} was killed before completion ` +
           `(signal=${err.signal}, code=${err.code}). ` +
-          `stdout=${err.stdout || ''} stderr=${err.stderr || ''}`
+          `stdout=${err.stdout || ''} stderr=${err.stderr || ''}`, { cause: err }
       );
     }
     if (tolerateExit) {
@@ -4992,7 +4992,7 @@ describe('bug-3287 — init plan-phase exposes expected_phase_dir with project_c
     try {
       return fs.readFileSync(filePath, 'utf8');
     } catch (err) {
-      throw new Error(`Cannot read workflow file ${filePath}: ${err.message}`);
+      throw new Error(`Cannot read workflow file ${filePath}: ${err.message}`, { cause: err });
     }
   }
 

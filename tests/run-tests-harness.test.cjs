@@ -1078,7 +1078,7 @@ describe('bug #969 B — runGsdTools kill-signal discrimination', () => {
           `(signal=${err.signal}, code=${err.code}, killed=${err.killed}). ` +
           `This indicates host OOM or scheduler contention, not a product bug. ` +
           `stdout=${err.stdout?.toString().trim() || ''} ` +
-          `stderr=${err.stderr?.toString().trim() || ''}`
+          `stderr=${err.stderr?.toString().trim() || ''}`, { cause: err }
         );
       }
       const stderrRaw = err.stderr?.toString().trim() || '';

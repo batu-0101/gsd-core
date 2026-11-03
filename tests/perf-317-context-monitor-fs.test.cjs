@@ -65,7 +65,7 @@ function runMonitorRaw(opts) {
   }
 
   const input = JSON.stringify({ session_id: sessionId, cwd });
-  let stdout = '';
+  let stdout;
   let exitCode = 0;
 
   try {
@@ -183,7 +183,7 @@ describe('perf #317: config.json absent (exercises config-missing → defaults p
     }));
 
     let exitCode = 0;
-    let stdout = '';
+    let stdout;
     try {
       stdout = execFileSync(process.execPath, [MONITOR_PATH], {
         input: JSON.stringify({ session_id: sessionId, cwd: testCwd }),
@@ -641,7 +641,7 @@ function runMonitorHook(remainingPct, usedPct) {
   }));
 
   const input = JSON.stringify({ session_id: sessionId, cwd: os.tmpdir() });
-  let stdout = '';
+  let stdout;
   try {
     stdout = execFileSync(process.execPath, [MONITOR_PATH], {
       input,
@@ -799,7 +799,7 @@ function runMonitor({ hookEventName, sessionId, remainingPct = 30, usedPct = 70,
     payload.hook_event_name = hookEventName;
   }
 
-  let stdout = '';
+  let stdout;
   try {
     stdout = execFileSync(process.execPath, [MONITOR_PATH], {
       input: JSON.stringify(payload),

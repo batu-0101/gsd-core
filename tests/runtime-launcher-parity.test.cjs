@@ -61,7 +61,7 @@ function extractShellBlocks(content) {
   let blockLang = null;
   let blockLines = [];
   let blockIndex = 0;
-  let blockIndent = '';
+  let blockIndent;
   let closingPattern = null;
 
   for (let i = 0; i < allLines.length; i++) {
@@ -86,7 +86,6 @@ function extractShellBlocks(content) {
         inBlock = false;
         blockLang = null;
         blockLines = [];
-        blockIndent = '';
         closingPattern = null;
         continue;
       }
@@ -1064,7 +1063,7 @@ function extractShellBlocks(content) {
   let inBlock = false;
   let blockLang = null;
   let blockLines = [];
-  let blockIndent = '';
+  let blockIndent;
   let closingPattern = null;
 
   for (let i = 0; i < allLines.length; i++) {
@@ -1087,7 +1086,6 @@ function extractShellBlocks(content) {
         inBlock = false;
         blockLang = null;
         blockLines = [];
-        blockIndent = '';
         closingPattern = null;
         continue;
       }

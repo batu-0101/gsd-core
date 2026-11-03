@@ -124,7 +124,7 @@ function scanFile(absPath) {
   try {
     src = fs.readFileSync(absPath, 'utf-8');
   } catch (err) {
-    throw new Error(`Could not read ${absPath}: ${err.message}`);
+    throw new Error(`Could not read ${absPath}: ${err.message}`, { cause: err });
   }
 
   // bin/install.js (generated installer) starts with a `#!/usr/bin/env node` shebang
@@ -154,7 +154,7 @@ function scanFile(absPath) {
     // C5: fail CLOSED on parse error — a file that fails to parse must FAIL the
     // test with its path, not be silently skipped.  Silent skip is a false-green:
     // an unparseable test file could contain a real disable directive.
-    throw new Error(`Parse error in ${absPath}: ${parseErr.message}`);
+    throw new Error(`Parse error in ${absPath}: ${parseErr.message}`, { cause: parseErr });
   }
 
   const blanket = [];

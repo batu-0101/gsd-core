@@ -34,7 +34,7 @@ function read(rel) {
   try {
     content = fs.readFileSync(path.join(ROOT, rel), 'utf-8');
   } catch (err) {
-    throw new Error('[skill-frontmatter-contract] failed to read ' + rel + ': ' + err.message);
+    throw new Error('[skill-frontmatter-contract] failed to read ' + rel + ': ' + err.message, { cause: err });
   }
   return content;
 }
